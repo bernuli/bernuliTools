@@ -123,11 +123,12 @@ my $anonymous = 0;
 my %legalArgs;
 
 $legalArgs{'help'} 			= 'Display help.';
+$legalArgs{'verbose='} 		= 'Change verbose level.'; 
+
 $legalArgs{'anonymous'} 	= 'Attempt is made to exclude privacy related info.'; 
+$legalArgs{'noSleep'} 		= 'Do not sleep between command runs.'; 
 $legalArgs{'notes='} 		= 'Notes added to the runlog file.'; 
 $legalArgs{'outputRoot='}	= 'Specify outputRoot for writing report files.'; 
-$legalArgs{'verbose='} 		= 'Change verbose level.'; 
-$legalArgs{'noSleep'} 		= 'Do not sleep between command runs.'; 
 
 my $argsHashRef = Baselines::parseARGV_v1_1(\%legalArgs);  # Organize ARGV into hash.
 

@@ -74,16 +74,6 @@ separate files written to the machineInfo subdirectory.",
 
 
 
-
-
-my $description = "
-psb.pl perlSimpleBenchmark
-
-
-
-";
-
-
 #
 #  Version History
 #
@@ -203,6 +193,8 @@ my $verbose = 1;
 my %legalArgs;
 
 $legalArgs{'help'}			= 'Display help.';
+$legalArgs{'verbose='} 		= 'Change verbose level.'; 
+
 $legalArgs{'anonymous'}		= 'Attempt is made to exclude privacy related info.'; 
 $legalArgs{'notes='}		= 'Notes added to the notes column in CSV output.'; 
 $legalArgs{'outputRoot='}	= 'Specify outDir for writing report files.'; 
@@ -224,9 +216,22 @@ if ( $argsHashRef->{'help'} ) {
 }
 
 
-$anonymous = 1 if $argsHashRef->{'anonymous'};
+if (defined $argsHashRef->{'verbose'}) {
 
-$notes = $argsHashRef->{'notes'} if $argsHashRef->{'notes'};
+	$verbose = $argsHashRef->{'verbose'};
+
+	die "Invalid verbose. [$verbose]\nUse 'help' for manual." if $verbose =~ /\D/;
+
+} 
+
+
+
+
+$outputRoot 	= $argsHashRef->{'outputRoot'} if $argsHashRef->{'outputRoot'};
+
+$anonymous 		= 1 if $argsHashRef->{'anonymous'};
+
+$notes 			= $argsHashRef->{'notes'} if $argsHashRef->{'notes'};
 
 $numberOfPasses = $argsHashRef->{'passes'} if $argsHashRef->{'passes'};
 
@@ -242,7 +247,6 @@ if ( $argsHashRef->{'testing'} ) {
 
 }
 
-$outputRoot = $argsHashRef->{'outputRoot'} if $argsHashRef->{'outputRoot'};
 
 
 
